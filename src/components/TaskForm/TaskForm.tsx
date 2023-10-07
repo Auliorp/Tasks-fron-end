@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState, ChangeEvent, FormEvent } from "react";
 import { createTaskRequest } from "../../api/tasks";
 
@@ -16,6 +17,7 @@ function TaskForm() {
       event.preventDefault();
       console.log(task);
       const res = await createTaskRequest(task);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const data = await res.json();
       console.log(data);
    };
