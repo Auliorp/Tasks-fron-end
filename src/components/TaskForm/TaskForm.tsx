@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState, ChangeEvent, FormEvent } from "react";
 import { createTaskRequest } from "../../api/tasks";
+import { useTasks } from "../../context/useTasks";
 
 function TaskForm() {
    const [task, setTask] = useState({
@@ -9,17 +10,14 @@ function TaskForm() {
       done: false,
    });
 
+   const { createTask } = useTasks();
    const handleChange = (
       event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
    ) => setTask({ ...task, [event.target.name]: event.target.value });
 
-   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      console.log(task);
-      const res = await createTaskRequest(task);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const data = await res.json();
-      console.log(data);
+      createTask(task);
    };
 
    return (

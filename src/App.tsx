@@ -1,5 +1,6 @@
 import TaskForm from "./components/TaskForm/TaskForm";
 import TaskList from "./components/TaskList/TaskList";
+import { TaskProvider } from "./context/TaskContext";
 
 function App() {
    return (
@@ -8,8 +9,10 @@ function App() {
             <h1 className="text-3xl font-bold text-center block my-2">
                Tasks App
             </h1>
-            <TaskForm />
-            <TaskList />
+            <TaskProvider>
+               <TaskForm />
+               <TaskList />
+            </TaskProvider>
          </div>
       </div>
    );
