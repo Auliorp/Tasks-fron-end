@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState, ChangeEvent, FormEvent } from "react";
-import { createTaskRequest } from "../../api/tasks";
 import { useTasks } from "../../context/useTasks";
 
 function TaskForm() {
@@ -15,9 +14,9 @@ function TaskForm() {
       event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
    ) => setTask({ ...task, [event.target.name]: event.target.value });
 
-   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      createTask(task);
+      await createTask(task);
    };
 
    return (
@@ -51,7 +50,7 @@ function TaskForm() {
                <input
                   type="checkbox"
                   className="h-5 w-5 text-indigo-600"
-                  onChange={(event) => setTask({ ...task, done: !task.done })}
+                  onChange={() => setTask({ ...task, done: !task.done })}
                />
                <span>Done</span>
             </label>

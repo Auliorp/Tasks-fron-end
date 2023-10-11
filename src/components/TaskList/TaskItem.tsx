@@ -21,8 +21,8 @@ function TaskItem({ task }: Props) {
             {task.done ? (
                <IoCheckmarkCircleOutline
                   className="text-green-500"
-                  onClick={() => {
-                     updateTask(task._id, {
+                  onClick={async () => {
+                     await updateTask(task._id, {
                         done: !task.done,
                      });
                   }}
@@ -30,8 +30,8 @@ function TaskItem({ task }: Props) {
             ) : (
                <IoCheckmarkCircleOutline
                   className="text-gray-500"
-                  onClick={() => {
-                     updateTask(task._id, {
+                  onClick={async () => {
+                     await updateTask(task._id, {
                         done: !task.done,
                      });
                   }}
